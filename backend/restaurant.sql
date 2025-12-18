@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 05-12-2025 a las 21:56:15
+-- Tiempo de generación: 18-12-2025 a las 21:06:19
 -- Versión del servidor: 10.1.37-MariaDB
 -- Versión de PHP: 7.2.14
 
@@ -191,6 +191,19 @@ CREATE TABLE `insumos` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `metodo_pago`
+--
+
+CREATE TABLE `metodo_pago` (
+  `id_venta` int(11) NOT NULL,
+  `metodo` enum('efectivo','tarjeta','transferencia') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `monto` decimal(10,2) NOT NULL,
+  `numero_autorizacion` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `movimientos_inventario`
 --
 
@@ -206,6 +219,56 @@ CREATE TABLE `movimientos_inventario` (
   `id_usuario` int(11) NOT NULL,
   `fecha_movimiento` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `permisos`
+--
+
+CREATE TABLE `permisos` (
+  `id_permiso` int(11) NOT NULL,
+  `nombre_permiso` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `descripcion` text COLLATE utf8mb4_unicode_ci,
+  `modulo` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `accion` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `activo` tinyint(1) DEFAULT '1'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `permisos`
+--
+
+INSERT INTO `permisos` (`id_permiso`, `nombre_permiso`, `descripcion`, `modulo`, `accion`, `activo`) VALUES
+(1, 'inventario_ver', 'Ver inventario de insumos', 'inventario', 'ver', 1),
+(2, 'inventario_crear', 'Crear nuevos insumos', 'inventario', 'crear', 1),
+(3, 'inventario_editar', 'Editar insumos existentes', 'inventario', 'editar', 1),
+(4, 'inventario_eliminar', 'Eliminar insumos', 'inventario', 'eliminar', 1),
+(5, 'inventario_ajustar', 'Ajustar stock de insumos', 'inventario', 'ajustar', 1),
+(6, 'compras_ver', 'Ver historial de compras', 'compras', 'ver', 1),
+(7, 'compras_crear', 'Registrar nuevas compras', 'compras', 'crear', 1),
+(8, 'compras_editar', 'Editar compras', 'compras', 'editar', 1),
+(9, 'productos_ver', 'Ver productos terminados', 'productos', 'ver', 1),
+(10, 'productos_crear', 'Crear productos', 'productos', 'crear', 1),
+(11, 'productos_editar', 'Editar productos y recetas', 'productos', 'editar', 1),
+(12, 'productos_eliminar', 'Eliminar productos', 'productos', 'eliminar', 1),
+(13, 'produccion_ver', 'Ver historial de producción', 'produccion', 'ver', 1),
+(14, 'produccion_crear', 'Registrar producción', 'produccion', 'crear', 1),
+(15, 'ventas_ver', 'Ver historial de ventas', 'ventas', 'ver', 1),
+(16, 'ventas_crear', 'Realizar ventas', 'ventas', 'crear', 1),
+(17, 'caja_ver', 'Ver estado de caja', 'caja', 'ver', 1),
+(18, 'caja_abrir', 'Abrir caja', 'caja', 'abrir', 1),
+(19, 'caja_cerrar', 'Cerrar caja', 'caja', 'cerrar', 1),
+(20, 'caja_historial', 'Ver historial de cajas', 'caja', 'historial', 1),
+(21, 'catalogos_ver', 'Ver catálogos', 'catalogos', 'ver', 1),
+(22, 'catalogos_crear', 'Crear en catálogos', 'catalogos', 'crear', 1),
+(23, 'catalogos_editar', 'Editar catálogos', 'catalogos', 'editar', 1),
+(24, 'catalogos_eliminar', 'Eliminar de catálogos', 'catalogos', 'eliminar', 1),
+(25, 'usuarios_ver', 'Ver usuarios', 'usuarios', 'ver', 1),
+(26, 'usuarios_crear', 'Crear usuarios', 'usuarios', 'crear', 1),
+(27, 'usuarios_editar', 'Editar usuarios', 'usuarios', 'editar', 1),
+(28, 'usuarios_eliminar', 'Eliminar usuarios', 'usuarios', 'eliminar', 1),
+(29, 'usuarios_permisos', 'Gestionar permisos', 'usuarios', 'permisos', 1);
 
 -- --------------------------------------------------------
 
@@ -346,6 +409,63 @@ INSERT INTO `roles` (`id_rol`, `nombre_rol`, `descripcion`, `activo`, `fecha_cre
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `roles_permisos`
+--
+
+CREATE TABLE `roles_permisos` (
+  `id_rol` int(11) NOT NULL,
+  `id_permiso` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `roles_permisos`
+--
+
+INSERT INTO `roles_permisos` (`id_rol`, `id_permiso`) VALUES
+(1, 1),
+(1, 2),
+(1, 3),
+(1, 4),
+(1, 5),
+(1, 6),
+(1, 7),
+(1, 8),
+(1, 9),
+(1, 10),
+(1, 11),
+(1, 12),
+(1, 13),
+(1, 14),
+(1, 15),
+(1, 16),
+(1, 17),
+(1, 18),
+(1, 19),
+(1, 20),
+(1, 21),
+(1, 22),
+(1, 23),
+(1, 24),
+(1, 25),
+(1, 26),
+(1, 27),
+(1, 28),
+(1, 29),
+(2, 9),
+(2, 15),
+(2, 16),
+(2, 17),
+(2, 18),
+(2, 19),
+(3, 1),
+(3, 5),
+(3, 9),
+(3, 13),
+(3, 14);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `unidades_medida`
 --
 
@@ -391,7 +511,8 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id_usuario`, `nombre_completo`, `email`, `username`, `password_hash`, `id_rol`, `activo`, `fecha_creacion`, `ultimo_acceso`) VALUES
-(1, 'Administrador del Sistema', 'admin@pollosasados.com', 'admin', '$2y$10$zZ48ADHLbF/goLbbPlIpd.w1N7JikqBVddasCyeEYTHCGznc6ucK6', 1, 1, '2025-12-02 21:52:30', '2025-12-05 18:54:55');
+(1, 'Administrador del Sistema', 'admin@pollosasados.com', 'admin', '$2y$10$zZ48ADHLbF/goLbbPlIpd.w1N7JikqBVddasCyeEYTHCGznc6ucK6', 1, 1, '2025-12-02 21:52:30', '2025-12-18 19:37:16'),
+(2, 'Israel Castro', '', 'icastro', '$2y$10$6O6zK9olyPrn4ldyMt23fOuBI45ZtXUT4SFVh6UOo6rYsc/Fg1BPG', 2, 1, '2025-12-17 19:39:38', '2025-12-18 19:35:22');
 
 -- --------------------------------------------------------
 
@@ -407,7 +528,7 @@ CREATE TABLE `ventas` (
   `subtotal` decimal(10,2) NOT NULL,
   `descuento` decimal(10,2) DEFAULT '0.00',
   `total_venta` decimal(10,2) NOT NULL,
-  `metodo_pago` enum('efectivo','tarjeta','transferencia') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `metodo_pago` enum('efectivo','tarjeta','transferencia') COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `id_usuario` int(11) NOT NULL,
   `notas` text COLLATE utf8mb4_unicode_ci,
   `fecha_registro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
@@ -545,6 +666,12 @@ ALTER TABLE `insumos`
   ADD KEY `idx_insumos_categoria` (`id_categoria`);
 
 --
+-- Indices de la tabla `metodo_pago`
+--
+ALTER TABLE `metodo_pago`
+  ADD KEY `id_venta` (`id_venta`) USING BTREE;
+
+--
 -- Indices de la tabla `movimientos_inventario`
 --
 ALTER TABLE `movimientos_inventario`
@@ -552,6 +679,14 @@ ALTER TABLE `movimientos_inventario`
   ADD KEY `id_insumo` (`id_insumo`),
   ADD KEY `id_usuario` (`id_usuario`),
   ADD KEY `idx_movimientos_fecha` (`fecha_movimiento`);
+
+--
+-- Indices de la tabla `permisos`
+--
+ALTER TABLE `permisos`
+  ADD PRIMARY KEY (`id_permiso`),
+  ADD UNIQUE KEY `nombre_permiso` (`nombre_permiso`),
+  ADD UNIQUE KEY `unique_modulo_accion` (`modulo`,`accion`);
 
 --
 -- Indices de la tabla `produccion`
@@ -587,6 +722,13 @@ ALTER TABLE `recetas`
 ALTER TABLE `roles`
   ADD PRIMARY KEY (`id_rol`),
   ADD UNIQUE KEY `nombre_rol` (`nombre_rol`);
+
+--
+-- Indices de la tabla `roles_permisos`
+--
+ALTER TABLE `roles_permisos`
+  ADD PRIMARY KEY (`id_rol`,`id_permiso`),
+  ADD KEY `id_permiso` (`id_permiso`);
 
 --
 -- Indices de la tabla `unidades_medida`
@@ -667,6 +809,12 @@ ALTER TABLE `movimientos_inventario`
   MODIFY `id_movimiento` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT de la tabla `permisos`
+--
+ALTER TABLE `permisos`
+  MODIFY `id_permiso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+
+--
 -- AUTO_INCREMENT de la tabla `produccion`
 --
 ALTER TABLE `produccion`
@@ -706,7 +854,7 @@ ALTER TABLE `unidades_medida`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `ventas`
@@ -773,6 +921,13 @@ ALTER TABLE `produccion`
 ALTER TABLE `recetas`
   ADD CONSTRAINT `recetas_ibfk_1` FOREIGN KEY (`id_producto`) REFERENCES `productos_terminados` (`id_producto`) ON DELETE CASCADE,
   ADD CONSTRAINT `recetas_ibfk_2` FOREIGN KEY (`id_insumo`) REFERENCES `insumos` (`id_insumo`);
+
+--
+-- Filtros para la tabla `roles_permisos`
+--
+ALTER TABLE `roles_permisos`
+  ADD CONSTRAINT `roles_permisos_ibfk_1` FOREIGN KEY (`id_rol`) REFERENCES `roles` (`id_rol`) ON DELETE CASCADE,
+  ADD CONSTRAINT `roles_permisos_ibfk_2` FOREIGN KEY (`id_permiso`) REFERENCES `permisos` (`id_permiso`) ON DELETE CASCADE;
 
 --
 -- Filtros para la tabla `usuarios`
