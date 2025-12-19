@@ -164,11 +164,7 @@ const Login = () => {
           >
             {loading ? 'Iniciando sesión...' : 'Iniciar Sesión'}
           </button>
-        </div>
-        
-        <div className="mt-6 text-center text-sm text-gray-600">
-          <p>Usuario: <span className="font-semibold">admin</span> | Contraseña: <span className="font-semibold">admin123</span></p>
-        </div>
+        </div>        
       </div>
     </div>
   );

@@ -15,18 +15,6 @@ class UnidadController {
         $this->auth = new AuthMiddleware();
     }
     
-    /* public function index() {
-        $auth = new AuthMiddleware();
-        $auth->verify();
-        
-        $query = "SELECT * FROM unidades_medida ORDER BY nombre_unidad";
-        $stmt = $this->db->prepare($query);
-        $stmt->execute();
-        $result = $stmt->fetchAll();
-        
-        Response::success("Unidades obtenidas correctamente", $result);
-    } */
-
     public function index() {
         $user = $this->auth->verify();
         
