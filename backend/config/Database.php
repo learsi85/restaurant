@@ -4,9 +4,14 @@
 
 class Database {
     private $host = "localhost";
-    private $db_name = "restaurant";
-    private $username = "root";
-    private $password = "";
+    // LOCAL
+    // private $db_name = "restaurant";
+    // private $username = "root";
+    // private $password = "";
+    // BLUEHOST
+    private $db_name = "acciont1_restaurant";
+    private $username = "acciont1_restaurant";
+    private $password = "25.PollosAT";
     private $conn;
     
     public function getConnection() {

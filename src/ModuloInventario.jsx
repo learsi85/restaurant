@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Plus, Filter, Search, Edit, Trash2, TrendingDown } from 'lucide-react';
 import { usePermisos } from './App';
 
-const API_URL = 'http://localhost/restaurant/backend';
+//const API_URL = 'http://localhost/restaurant/backend';
+const API_URL = 'https://acciontic.com.mx/restaurant';
 
 // Componente de Dashboard de Inventario
 const ModuloInventario = ({ token }) => {

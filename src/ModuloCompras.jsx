@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { ShoppingCart, Plus, Eye, Calendar, Filter, DollarSign, Package, Truck, CheckCircle, XCircle, Clock, Circle } from 'lucide-react';
 import { usePermisos } from './App';
 
-const API_URL = 'http://localhost/restaurant/backend';
+//const API_URL = 'http://localhost/restaurant/backend';
+const API_URL = 'https://acciontic.com.mx/restaurant';
 
 // Componente principal de Compras
 const ModuloCompras = ({ token }) => {

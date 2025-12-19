@@ -10,7 +10,8 @@ $request_method = $_SERVER['REQUEST_METHOD'];
 
 // Remover query string y base path si existe
 $path = parse_url($request_uri, PHP_URL_PATH);
-$path = str_replace('/restaurant/backend', '', $path); // Asumiendo que la API está en /api
+//$path = str_replace('/restaurant/backend', '', $path); // LOCAL
+$path = str_replace('/restaurant', '', $path); // BLUEHOST
 
 // Dividir la ruta en segmentos
 $segments = array_filter(explode('/', $path));
@@ -29,7 +30,7 @@ try {
         case 'auth':
             require_once 'controllers/AuthController.php';
             $authController = new AuthController();
-            $action = $id;
+            $action = $id; 
             if ($action === 'login' && $request_method === 'POST') {
                 $authController->login();
             } elseif ($action === 'register' && $request_method === 'POST') {
@@ -108,6 +109,10 @@ try {
                 $proveedorController->index();
             } elseif (!$id && $request_method === 'POST') {
                 $proveedorController->store();
+            } elseif ($id && !$action && $request_method === 'PUT') {
+                $proveedorController->update($id);
+            } elseif ($id && !$action && $request_method === 'DELETE') {
+                $proveedorController->delete($id);
             } else {
                 http_response_code(404);
                 echo json_encode(['success' => false, 'message' => 'Ruta no encontrada']);
@@ -121,8 +126,14 @@ try {
             require_once 'controllers/CategoriaController.php';
             $categoriaController = new CategoriaController();
             
-            if ($request_method === 'GET') {
+            if (!$id && $request_method === 'GET') {
                 $categoriaController->index();
+            } elseif (!$id && $request_method === 'POST') {
+                $categoriaController->store();
+            } elseif ($id && !$action && $request_method === 'PUT') {
+                $categoriaController->update($id);
+            } elseif ($id && !$action && $request_method === 'DELETE') {
+                $categoriaController->delete($id);
             } else {
                 http_response_code(404);
                 echo json_encode(['success' => false, 'message' => 'Ruta no encontrada']);
@@ -136,8 +147,14 @@ try {
             require_once 'controllers/UnidadController.php';
             $unidadController = new UnidadController();
             
-            if ($request_method === 'GET') {
+            if (!$id && $request_method === 'GET') {
                 $unidadController->index();
+            } elseif (!$id && $request_method === 'POST') {
+                $unidadController->store();
+            } elseif ($id && !$action && $request_method === 'PUT') {
+                $unidadController->update($id);
+            } elseif ($id && !$action && $request_method === 'DELETE') {
+                $unidadController->delete($id);
             } else {
                 http_response_code(404);
                 echo json_encode(['success' => false, 'message' => 'Ruta no encontrada']);

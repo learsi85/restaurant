@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { ShoppingBag, Plus, Minus, Trash2, DollarSign, CreditCard, Smartphone, User, Receipt, Eye, CheckCircle, X, AlertCircle } from 'lucide-react';
 import { usePermisos } from './App';
 
-const API_URL = 'http://localhost/restaurant/backend';
+//const API_URL = 'http://localhost/restaurant/backend';
+const API_URL = 'https://acciontic.com.mx/restaurant';
 
 // Componente Principal - Módulo de Ventas
 const ModuloVentas = ({ token, user }) => {

@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Wallet, DollarSign, TrendingUp, TrendingDown, Lock, Unlock, Calendar, AlertCircle, CheckCircle, Eye, CreditCard, Smartphone } from 'lucide-react';
 import { usePermisos } from './App';
 
-const API_URL = 'http://localhost/restaurant/backend';
+//const API_URL = 'http://localhost/restaurant/backend';
+const API_URL = 'https://acciontic.com.mx/restaurant';
 
 // Componente Principal - Módulo de Caja
 const ModuloCaja = ({ token, user }) => {

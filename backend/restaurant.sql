@@ -21,8 +21,6 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `restaurant`
 --
-CREATE DATABASE IF NOT EXISTS `restaurant` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-USE `restaurant`;
 
 -- --------------------------------------------------------
 
@@ -511,8 +509,7 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id_usuario`, `nombre_completo`, `email`, `username`, `password_hash`, `id_rol`, `activo`, `fecha_creacion`, `ultimo_acceso`) VALUES
-(1, 'Administrador del Sistema', 'admin@pollosasados.com', 'admin', '$2y$10$zZ48ADHLbF/goLbbPlIpd.w1N7JikqBVddasCyeEYTHCGznc6ucK6', 1, 1, '2025-12-02 21:52:30', '2025-12-18 19:37:16'),
-(2, 'Israel Castro', '', 'icastro', '$2y$10$6O6zK9olyPrn4ldyMt23fOuBI45ZtXUT4SFVh6UOo6rYsc/Fg1BPG', 2, 1, '2025-12-17 19:39:38', '2025-12-18 19:35:22');
+(1, 'Administrador del Sistema', 'admin@pollosasados.com', 'admin', '$2y$10$zZ48ADHLbF/goLbbPlIpd.w1N7JikqBVddasCyeEYTHCGznc6ucK6', 1, 1, '2025-12-02 21:52:30', '2025-12-18 19:37:16');
 
 -- --------------------------------------------------------
 

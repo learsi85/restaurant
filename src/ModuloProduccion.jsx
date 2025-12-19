@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Factory, Plus, Eye, Calendar, TrendingUp, DollarSign, Package, AlertCircle, CheckCircle, ChefHat, AlertTriangle } from 'lucide-react';
 import { usePermisos } from './App';
 
-const API_URL = 'http://localhost/restaurant/backend';
+//const API_URL = 'http://localhost/restaurant/backend';
+const API_URL = 'https://acciontic.com.mx/restaurant';
 
 // Componente Principal - Módulo de Producción
 const ModuloProduccion = ({ token, user }) => {

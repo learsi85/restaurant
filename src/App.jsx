@@ -10,8 +10,8 @@ import { ModuloCaja } from './ModuloCaja';
 import { ModuloUserRolPermisos } from './ModuloUserRolePermission';
 
 // Configuración de la API
-const API_URL = 'http://localhost/restaurant/backend';
-
+//const API_URL = 'http://localhost/restaurant/backend';
+const API_URL = 'https://acciontic.com.mx/restaurant';
 // Context de Autenticación
 const AuthContext = React.createContext();
 

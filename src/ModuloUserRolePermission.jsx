@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Users, Shield, Lock, Eye, EyeOff, Plus, Edit2, Trash2, Save, X, Key, CircleUser, Settings, Search, AlertCircle, CheckCircle } from 'lucide-react';
 
-const API_URL = 'http://localhost/restaurant/backend';
+//const API_URL = 'http://localhost/restaurant/backend';
+const API_URL = 'https://acciontic.com.mx/restaurant';
 
 const ModuloUserRolPermisos = ({ token }) => {
   const [tabActiva, setTabActiva] = useState('usuarios');
@@ -168,7 +169,7 @@ const TabUsuarios = ({ token }) => {
       const data = await response.json();
       
       if (data.success) {
-        cargarUsuarios();
+        cargarDatos();
         mostrarMensaje('Usuario eliminado exitosamente', 'success');
       }
     } catch (error) {
@@ -805,7 +806,7 @@ const TabRoles = ({ token }) => {
           <div className="bg-white rounded-lg shadow-xl w-full max-w-3xl p-6 m-4">
             <div className="flex justify-between items-center mb-4">
               <h3 className="text-xl font-bold text-gray-800">
-                Permisos rol {currentRolPermiso.descripcion}
+                Permisos rol {currentRolPermiso.nombre_rol}
               </h3>
               <button 
                 onClick={() => {
